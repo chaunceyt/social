@@ -57,25 +57,9 @@
 					"LinkedIn": "",
 					"Google+": "",
 					"Vimeo": ""
-				}],
-				"children": []
-			}, {
-				"type": "Federal Energy Regulatory Commission",
-				"id": "5",
-				"name": "FERC",
-				"abbreviation": "",
-				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
-				}],
-				"children": []
-			}, {
+				}]
+			}, 
+			{
 				"type": "Office of the Under Secretary for Nuclear Security and National Nuclear Security Organization",
 				"id": "6",
 				"name": "",
@@ -104,8 +88,7 @@
 						"LinkedIn": "",
 						"Google+": "",
 						"Vimeo": ""
-					}],
-					"children": []
+					}]
 				}, {
 					"type": "NNSA",
 					"id": "8",
@@ -120,8 +103,7 @@
 						"LinkedIn": "",
 						"Google+": "",
 						"Vimeo": ""
-					}],
-					"children": []
+					}]
 				}, {
 					"type": "Other Nuclear Security",
 					"id": "9",
@@ -136,8 +118,7 @@
 						"LinkedIn": "",
 						"Google+": "",
 						"Vimeo": ""
-					}],
-					"children": []
+					}]
 				}]
 			}, {
 				"type": "Office of the Under Secretary for Science & Energy",
@@ -183,8 +164,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}, {
 							"type": "Science Bowl",
 							"id": "13",
@@ -199,8 +179,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}, {
 							"type": "Better Buildings Challenge",
 							"id": "14",
@@ -215,8 +194,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}, {
 							"type": "BioenergyKDF",
 							"id": "15",
@@ -231,8 +209,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}, {
 							"type": "Solar Decathlon",
 							"id": "16",
@@ -247,8 +224,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}]
 					}, {
 						"type": "Office of Science",
@@ -279,8 +255,7 @@
 								"LinkedIn": "",
 								"Google+": "",
 								"Vimeo": ""
-							}],
-							"children": []
+							}]
 						}]
 					}, {
 						"type": "Fossil Energy",
@@ -296,8 +271,7 @@
 							"LinkedIn": "",
 							"Google+": "",
 							"Vimeo": ""
-						}],
-						"children": []
+						}]
 					}, {
 						"type": "Nuclear Energy",
 						"id": "20",
@@ -312,8 +286,7 @@
 							"LinkedIn": "",
 							"Google+": "",
 							"Vimeo": ""
-						}],
-						"children": []
+						}]
 					}, {
 						"type": "Electricity",
 						"id": "21",
@@ -328,8 +301,7 @@
 							"LinkedIn": "",
 							"Google+": "",
 							"Vimeo": ""
-						}],
-						"children": []
+						}]
 					}, {
 						"type": "Indian Energy",
 						"id": "22",
@@ -344,8 +316,7 @@
 							"LinkedIn": "",
 							"Google+": "",
 							"Vimeo": ""
-						}],
-						"children": []
+						}]
 					}, {
 						"type": "Office of Technology Transitions",
 						"id": "23",
@@ -360,8 +331,7 @@
 							"LinkedIn": "",
 							"Google+": "",
 							"Vimeo": ""
-						}],
-						"children": []
+						}]
 					}
 
 				]
@@ -379,8 +349,7 @@
 					"LinkedIn": "",
 					"Google+": "",
 					"Vimeo": ""
-				}],
-				"children": []
+				}]
 			}, {
 				"type": "Energy Information Administration",
 				"id": "25",
@@ -395,8 +364,7 @@
 					"LinkedIn": "",
 					"Google+": "",
 					"Vimeo": ""
-				}],
-				"children": []
+				}]
 			}]
 		}]
 	}]
