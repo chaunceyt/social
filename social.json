@@ -14,6 +14,21 @@
 		"Vimeo": ""
 	}],
 	"children": [{
+		"type": "Press Secretary",
+		"id": "4",
+		"name": "",
+		"abbreviation": "",
+		"accounts": [{
+			"Instagram": "",
+			"YouTube": "",
+			"Medium": "",
+			"Pinterest": "",
+			"Storify": "",
+			"LinkedIn": "",
+			"Google+": "",
+			"Vimeo": ""
+		}]
+	}, {
 		"type": "Secretary of Energy",
 		"id": "2",
 		"name": "Rick Perry",
@@ -43,22 +58,23 @@
 				"Google+": "",
 				"Vimeo": ""
 			}],
-			"children": [{
-				"type": "Press Secretary",
-				"id": "4",
-				"name": "",
-				"abbreviation": "",
-				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
-				}]
-			}, 
+			"children": []},
+			{
+			"type": "",
+			"id": "3",
+			"name": "null",
+			"abbreviation": "",
+			"accounts": [{
+				"Instagram": "",
+				"YouTube": "",
+				"Medium": "",
+				"Pinterest": "",
+				"Storify": "",
+				"LinkedIn": "",
+				"Google+": "",
+				"Vimeo": ""
+			}],
+			"children": [
 			{
 				"type": "Office of the Under Secretary for Nuclear Security and National Nuclear Security Organization",
 				"id": "6",
