@@ -1,0 +1,208 @@
+---
+layout: default
+---
+<style type="text/css">
+  body { font: 12px Arial;}
+
+  path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+</style>
+<!-- <svg width="960" height="500"></svg> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+// Set the dimensions of the canvas / graph
+var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+	width = 550 - margin.left - margin.right,
+	height = 320 - margin.top - margin.bottom;
+
+// Parse the date / time
+var parseTime = d3.timeParse("%m/%d/%y %H:%M");
+
+// Set the ranges
+var x = d3.scaleTime()
+    .rangeRound([0, width]);
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+// Define the axes
+var	xAxis = d3.svg.axis().scale(x)
+	.orient("bottom").ticks(d3.timeMinute.every(50));
+
+var	yAxis = d3.svg.axis().scale(y)
+	.orient("left").ticks(10);
+
+// Define the line
+var	valueline = d3.svg.line()
+	.x(function(d) { return x(d.date); })
+	.y(function(d) { return y(d.DOEtwitter); });
+
+var	valueline2 = d3.svg.line()
+	.x(function(d) { return x(d.date); })
+	.y(function(d) { return y(d.SECtwitter); });
+
+var	valueline3 = d3.svg.line()
+	.x(function(d) { return x(d.date); })
+	.y(function(d) { return y(d.DOEinstagram); });
+
+var	valueline4 = d3.svg.line()
+	.x(function(d) { return x(d.date); })
+	.y(function(d) { return y(d.DOEyoutube); });		
+    
+// Adds the svg canvas
+var	chart1 = d3.select("body")
+	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var	chart2 = d3.select("body")
+	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var	chart3 = d3.select("body")
+	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var	chart4 = d3.select("body")
+	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// Get the data
+d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", function(error, data) {
+	data.forEach(function(d) {
+		d.date = parseTime(d.date);
+		d.DOEtwitter = +d.DOEtwitter;
+		d.DOEinstagram = +d.DOEinstagram;
+		d.DOEyoutube = parseFloat(d.DOEyoutube.replace(',',''));
+		d.SECtwitter = +d.SECtwitter;
+	});
+
+	// Scale the range of the data
+	x.domain(d3.extent(data, function(d) { return d.date; }));
+	y.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
+	// y.domain([d3.min(data, function(d) { return d.DOEtwitter; }), d3.max(data, function(d) { return d.DOEtwitter; })]);
+
+	// Add the valueline path.
+	chart1.append("path")
+		.attr("class", "line")
+		.attr("d", valueline(data));
+
+	// Add the X Axis
+	chart1.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	// Add the Y Axis
+	chart1.append("g")
+		.attr("class", "y axis")
+    	.call(d3.axisLeft(y))
+			.append("text")
+			.attr("fill", "#000")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", "0.71em")
+			.attr("text-anchor", "end")
+			.text("Energy.gov Twitter Followers");
+
+	y.domain(d3.extent(data, function(d) { return d.SECtwitter; }));
+
+// Add the valueline path.
+	chart2.append("path")
+		.attr("class", "line")
+		.attr("d", valueline2(data));
+
+	// Add the X Axis
+	chart2.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	// Add the Y Axis
+	chart2.append("g")
+		.attr("class", "y axis")
+    	.call(d3.axisLeft(y))
+    		.append("text")
+			.attr("fill", "#000")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", "0.71em")
+			.attr("text-anchor", "end")
+			.text("Secretary Perry Twitter Followers");
+
+	y.domain(d3.extent(data, function(d) { return d.DOEinstagram; }));
+
+	chart3.append("path")
+		.attr("class", "line")
+		.attr("d", valueline3(data));
+
+	// Add the X Axis
+	chart3.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	// Add the Y Axis
+	chart3.append("g")
+		.attr("class", "y axis")
+    	.call(d3.axisLeft(y))
+    		.append("text")
+			.attr("fill", "#000")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", "0.71em")
+			.attr("text-anchor", "end")
+			.text("Energy Insta Followers");
+
+	y.domain(d3.extent(data, function(d) { return d.DOEyoutube; }));
+
+	chart4.append("path")
+		.attr("class", "line")
+		.attr("d", valueline4(data));
+
+	// Add the X Axis
+	chart4.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x));
+
+	// Add the Y Axis
+	chart4.append("g")
+		.attr("class", "y axis")
+    	.call(d3.axisLeft(y))
+    		.append("text")
+			.attr("fill", "#000")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", "0.71em")
+			.attr("text-anchor", "end")
+			.text("Energy Youtube Subscriptions");
+
+
+});
+		
+
+</script>

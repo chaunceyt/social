@@ -1,8 +1,9 @@
 {
-	"type": "Department of Energy",
-	"id": "1",
+	"type": "The Department of Energy",
+	"zid": "1",
 	"name": "",
-	"abbreviation": "",
+	"active":"yes",
+	"abbreviation": "DOE",
 	"accounts": [{
 		"Instagram": "",
 		"YouTube": "",
@@ -15,8 +16,9 @@
 	}],
 	"children": [{
 		"type": "Press Secretary",
-		"id": "4",
+		"zid": "4",
 		"name": "",
+		"active":"yes",
 		"abbreviation": "",
 		"accounts": [{
 			"Instagram": "",
@@ -30,8 +32,9 @@
 		}]
 	}, {
 		"type": "Secretary of Energy",
-		"id": "2",
+		"zid": "2",
 		"name": "Rick Perry",
+		"active":"yes",
 		"abbreviation": "",
 		"accounts": [{
 			"Instagram": "",
@@ -45,8 +48,9 @@
 		}],
 		"children": [{
 			"type": "Deputy Secretary of Energy",
-			"id": "3",
+			"zid": "3",
 			"name": "",
+			"active":"no",
 			"abbreviation": "",
 			"accounts": [{
 				"Instagram": "",
@@ -57,12 +61,12 @@
 				"LinkedIn": "",
 				"Google+": "",
 				"Vimeo": ""
-			}],
-			"children": []},
+			}]},
 			{
 			"type": "",
-			"id": "3",
+			"zid": "",
 			"name": "null",
+			"active":"yes",
 			"abbreviation": "",
 			"accounts": [{
 				"Instagram": "",
@@ -77,8 +81,9 @@
 			"children": [
 			{
 				"type": "Office of the Under Secretary for Nuclear Security and National Nuclear Security Organization",
-				"id": "6",
+				"zid": "6",
 				"name": "",
+				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
 					"Instagram": "",
@@ -92,8 +97,9 @@
 				}],
 				"children": [{
 					"type": "Under Secretary for Nuclear Security Administration",
-					"id": "7",
+					"zid": "7",
 					"name": "Frank Klotz",
+					"active":"yes",
 					"abbreviation": "",
 					"accounts": [{
 						"Instagram": "",
@@ -107,8 +113,9 @@
 					}]
 				}, {
 					"type": "NNSA",
-					"id": "8",
+					"zid": "8",
 					"name": "",
+					"active":"yes",
 					"abbreviation": "",
 					"accounts": [{
 						"Instagram": "",
@@ -122,8 +129,9 @@
 					}]
 				}, {
 					"type": "Other Nuclear Security",
-					"id": "9",
+					"zid": "9",
 					"name": "",
+					"active":"no",
 					"abbreviation": "",
 					"accounts": [{
 						"Instagram": "",
@@ -138,8 +146,9 @@
 				}]
 			}, {
 				"type": "Office of the Under Secretary for Science & Energy",
-				"id": "10",
+				"zid": "10",
 				"name": "",
+				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
 					"Instagram": "",
@@ -153,8 +162,9 @@
 				}],
 				"children": [{
 						"type": "EERE",
-						"id": "11",
+						"zid": "11",
 						"name": "",
+						"active":"yes",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -168,8 +178,9 @@
 						}],
 						"children": [{
 							"type": "Energy Saver",
-							"id": "12",
+							"zid": "12",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -183,8 +194,9 @@
 							}]
 						}, {
 							"type": "Science Bowl",
-							"id": "13",
+							"zid": "13",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -198,8 +210,9 @@
 							}]
 						}, {
 							"type": "Better Buildings Challenge",
-							"id": "14",
+							"zid": "14",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -213,8 +226,9 @@
 							}]
 						}, {
 							"type": "BioenergyKDF",
-							"id": "15",
+							"zid": "15",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -228,8 +242,9 @@
 							}]
 						}, {
 							"type": "Solar Decathlon",
-							"id": "16",
+							"zid": "16",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -244,8 +259,9 @@
 						}]
 					}, {
 						"type": "Office of Science",
-						"id": "17",
+						"zid": "17",
 						"name": "",
+						"active":"yes",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -259,8 +275,9 @@
 						}],
 						"children": [{
 							"type": "SBIR",
-							"id": "18",
+							"zid": "18",
 							"name": "",
+							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
 								"Instagram": "",
@@ -275,8 +292,9 @@
 						}]
 					}, {
 						"type": "Fossil Energy",
-						"id": "19",
+						"zid": "19",
 						"name": "",
+						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -290,8 +308,9 @@
 						}]
 					}, {
 						"type": "Nuclear Energy",
-						"id": "20",
+						"zid": "20",
 						"name": "",
+						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -305,8 +324,9 @@
 						}]
 					}, {
 						"type": "Electricity",
-						"id": "21",
+						"zid": "21",
 						"name": "",
+						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -320,8 +340,9 @@
 						}]
 					}, {
 						"type": "Indian Energy",
-						"id": "22",
+						"zid": "22",
 						"name": "",
+						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -335,8 +356,9 @@
 						}]
 					}, {
 						"type": "Office of Technology Transitions",
-						"id": "23",
+						"zid": "23",
 						"name": "",
+						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
 							"Instagram": "",
@@ -353,8 +375,9 @@
 				]
 			}, {
 				"type": "ARPA-E",
-				"id": "24",
+				"zid": "24",
 				"name": "",
+				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
 					"Instagram": "",
@@ -368,8 +391,9 @@
 				}]
 			}, {
 				"type": "Energy Information Administration",
-				"id": "25",
+				"zid": "25",
 				"name": "",
+				"active":"yes",
 				"abbreviation": "EIA",
 				"accounts": [{
 					"Instagram": "",

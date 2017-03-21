@@ -15,6 +15,10 @@ layout: default
   font-size: 11px;
 }
 
+.node.inactive text {
+  fill: #aaa;
+}
+
 path.link {
   fill: none;
   stroke: #ccc;
@@ -61,7 +65,7 @@ d3.json("social.json", function(json) {
       toggle(d);
     }
   }
-  
+
   // Initialize the display to show a few nodes.
   // root.children.forEach(toggleAll);
   // toggle(root.children[0]);
@@ -87,7 +91,13 @@ function update(source) {
 
   // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("svg:g")
-      .attr("class", "node")
+      .attr("class", function(d) {
+        if (d.active === "yes") {
+          return "node active";  
+        } else {
+          return "node inactive"
+        }
+      })
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
       .on("click", function(d) { toggle(d); update(d); });
 
