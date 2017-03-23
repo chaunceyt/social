@@ -2,12 +2,24 @@
 layout: default
 ---
 <style type="text/css">
-  body { font: 12px Arial;}
-
+  body { font:Arial;}
+  h1 {
+    font-size: 20px; 
+  }
+  h2  {
+    font-size: 14px;
+  }
   path { 
     stroke: steelblue;
     stroke-width: 2;
     fill: none;
+  }
+
+  .date-track-line {
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+    stroke-dasharray: 5,5;
+    stroke: grey;
   }
 
   .axis path,
@@ -17,7 +29,21 @@ layout: default
     stroke-width: 1;
     shape-rendering: crispEdges;
   }
+
+
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .focus circle {
+    fill: none;
+    stroke: steelblue;
+  }
+
 </style>
+<h1>Up to the hour Energy Social Platform stats</h1>
+<h2>Last updated: <span id="time"></span></h2>
 <!-- <svg width="960" height="500"></svg> -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -30,64 +56,75 @@ var	margin = {top: 30, right: 20, bottom: 30, left: 50},
 
 // Parse the date / time
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
+var bisectDate = d3.bisector(function(d) { return d.date; }).left;
 
 // Set the ranges
 var x = d3.scaleTime()
     .rangeRound([0, width]);
-var y = d3.scaleLinear()
+var y1 = d3.scaleLinear()
+    .rangeRound([height, 0]);
+var y2 = d3.scaleLinear()
+    .rangeRound([height, 0]);
+var y3 = d3.scaleLinear()
+    .rangeRound([height, 0]);
+var y4 = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 // Define the axes
 var	xAxis = d3.svg.axis().scale(x)
 	.orient("bottom").ticks(d3.timeMinute.every(50));
 
-var	yAxis = d3.svg.axis().scale(y)
+var	yAxis = d3.svg.axis().scale(y1)
 	.orient("left").ticks(10);
 
 // Define the line
 var	valueline = d3.svg.line()
 	.x(function(d) { return x(d.date); })
-	.y(function(d) { return y(d.DOEtwitter); });
+	.y(function(d) { return y1(d.DOEtwitter); });
 
 var	valueline2 = d3.svg.line()
 	.x(function(d) { return x(d.date); })
-	.y(function(d) { return y(d.SECtwitter); });
+	.y(function(d) { return y2(d.SECtwitter); });
 
 var	valueline3 = d3.svg.line()
 	.x(function(d) { return x(d.date); })
-	.y(function(d) { return y(d.DOEinstagram); });
+	.y(function(d) { return y3(d.DOEinstagram); });
 
 var	valueline4 = d3.svg.line()
 	.x(function(d) { return x(d.date); })
-	.y(function(d) { return y(d.DOEyoutube); });		
+	.y(function(d) { return y4(d.DOEyoutube); });		
     
 // Adds the svg canvas
 var	chart1 = d3.select("body")
-	.append("svg")
+	.append("svg")  
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 	.append("g")
+    .attr("class","chart")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var	chart2 = d3.select("body")
-	.append("svg")
+	.append("svg")  
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 	.append("g")
+    .attr("class","chart")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var	chart3 = d3.select("body")
-	.append("svg")
+	.append("svg")  
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 	.append("g")
+    .attr("class","chart")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var	chart4 = d3.select("body")
-	.append("svg")
+	.append("svg")  
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 	.append("g")
+    .attr("class","chart")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
@@ -100,15 +137,23 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
 		d.SECtwitter = +d.SECtwitter;
 	});
 
+  data.sort(function(a, b) {
+    return a.date - b.date;
+  });
+
+  // set the date updated
+  var length = data.length - 1;
+  var timeNow = data[length].date;
+  element = document.getElementById('time');
+  element.innerHTML = timeNow
+
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.date; }));
-	y.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
+	y1.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
 	// y.domain([d3.min(data, function(d) { return d.DOEtwitter; }), d3.max(data, function(d) { return d.DOEtwitter; })]);
-
-	// Add the valueline path.
-	chart1.append("path")
-		.attr("class", "line")
-		.attr("d", valueline(data));
+  y2.domain(d3.extent(data, function(d) { return d.SECtwitter; }));
+  y3.domain(d3.extent(data, function(d) { return d.DOEinstagram; }));
+  y4.domain(d3.extent(data, function(d) { return d.DOEyoutube; }));
 
 	// Add the X Axis
 	chart1.append("g")
@@ -119,7 +164,7 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
 	// Add the Y Axis
 	chart1.append("g")
 		.attr("class", "y axis")
-    	.call(d3.axisLeft(y))
+    	.call(d3.axisLeft(y1))
 			.append("text")
 			.attr("fill", "#000")
 			.attr("transform", "rotate(-90)")
@@ -128,79 +173,184 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
 			.attr("text-anchor", "end")
 			.text("Energy.gov Twitter Followers");
 
-	y.domain(d3.extent(data, function(d) { return d.SECtwitter; }));
+  // Add the valueline path.
+  chart1.append("path")
+    .attr("class", "line")
+    .attr("d", valueline(data));
+
+  var focus1 = chart1.append("g")
+    .attr("class", "focus")
+    // .style("display", "none");
+
+  focus1.append("circle")
+    .attr("r", 4.5);
+
+  focus1.append("text")
+    .attr("x", 9)
+    .attr("dy", ".35em");
+
+  chart1.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height)
+    // .on("mouseover", function() { focus1.style("display", null); })
+    // .on("mouseout", function() { focus1.style("display", "none"); })
+    .on("mousemove", mousemove);
+
+  // Add the X Axis
+  chart2.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  chart2.append("g")
+    .attr("class", "y axis")
+      .call(d3.axisLeft(y2))
+        .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Secretary Perry Twitter Followers");
 
 // Add the valueline path.
 	chart2.append("path")
 		.attr("class", "line")
 		.attr("d", valueline2(data));
 
-	// Add the X Axis
-	chart2.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+  var focus2 = chart2.append("g")
+    .attr("class", "focus")
 
-	// Add the Y Axis
-	chart2.append("g")
-		.attr("class", "y axis")
-    	.call(d3.axisLeft(y))
-    		.append("text")
-			.attr("fill", "#000")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", "0.71em")
-			.attr("text-anchor", "end")
-			.text("Secretary Perry Twitter Followers");
+  focus2.append("circle")
+    .attr("r", 4.5);
 
-	y.domain(d3.extent(data, function(d) { return d.DOEinstagram; }));
+  focus2.append("text")
+    .attr("x", 9)
+    .attr("dy", ".35em");
+
+  chart2.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height)
+    .on("mousemove", mousemove);
+
+  // Add the X Axis
+  chart3.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  chart3.append("g")
+    .attr("class", "y axis")
+      .call(d3.axisLeft(y3))
+        .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Energy Insta Followers");
 
 	chart3.append("path")
 		.attr("class", "line")
 		.attr("d", valueline3(data));
 
-	// Add the X Axis
-	chart3.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+var focus3 = chart3.append("g")
+    .attr("class", "focus")
 
-	// Add the Y Axis
-	chart3.append("g")
-		.attr("class", "y axis")
-    	.call(d3.axisLeft(y))
-    		.append("text")
-			.attr("fill", "#000")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", "0.71em")
-			.attr("text-anchor", "end")
-			.text("Energy Insta Followers");
+  focus3.append("circle")
+    .attr("r", 4.5);
 
-	y.domain(d3.extent(data, function(d) { return d.DOEyoutube; }));
+  focus3.append("text")
+    .attr("x", 9)
+    .attr("dy", ".35em");
+
+  chart3.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height)
+    .on("mousemove", mousemove);
+
+  // Add the X Axis
+  chart4.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  chart4.append("g")
+    .attr("class", "y axis")
+      .call(d3.axisLeft(y4))
+        .append("text")
+      .attr("fill", "#000")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Energy Youtube Subscriptions");
 
 	chart4.append("path")
 		.attr("class", "line")
 		.attr("d", valueline4(data));
 
-	// Add the X Axis
-	chart4.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(d3.axisBottom(x));
+  var focus4 = chart4.append("g")
+    .attr("class", "focus")
+    // .style("display", "none");
 
-	// Add the Y Axis
-	chart4.append("g")
-		.attr("class", "y axis")
-    	.call(d3.axisLeft(y))
-    		.append("text")
-			.attr("fill", "#000")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", "0.71em")
-			.attr("text-anchor", "end")
-			.text("Energy Youtube Subscriptions");
+  focus4.append("circle")
+    .attr("r", 4.5);
 
+  focus4.append("text")
+    .attr("x", 9)
+    .attr("dy", ".35em");
+
+  chart4.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height)
+    // .on("mouseover", function() { focus1.style("display", null); })
+    // .on("mouseout", function() { focus1.style("display", "none"); })
+    .on("mousemove", mousemove);
+
+  // for (var i = 0; i < 4; i++) {
+    
+  // }
+d3.selectAll(".chart")
+  .append("g")    
+    .append("line")
+      .attr("class","date-track-line");
+
+
+
+function mousemove() {
+    var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+    focus1.attr("transform", "translate(" + x(d.date) + "," + y1(d.DOEtwitter) + ")");
+    focus1.select("text").text(d.DOEtwitter);
+    focus2.attr("transform", "translate(" + x(d.date) + "," + y2(d.SECtwitter) + ")");
+    focus2.select("text").text(d.SECtwitter);
+    focus3.attr("transform", "translate(" + x(d.date) + "," + y3(d.DOEinstagram) + ")");
+    focus3.select("text").text(d.DOEinstagram);
+    focus4.attr("transform", "translate(" + x(d.date) + "," + y4(d.DOEyoutube) + ")");
+    focus4.select("text").text(d.DOEyoutube);
+
+    var ys = [y1(d.DOEtwitter), y2(d.SECtwitter), y3(d.DOEinstagram), y4(d.DOEyoutube)]
+
+    d3.selectAll(".date-track-line")
+      .attr("x1",x(d.date))
+      .attr("x2",x(d.date))
+      .attr("y1",function(d,i){  
+        return ys[i];
+      })  
+      .attr("y2",height)
+  }
 
 });
 		
