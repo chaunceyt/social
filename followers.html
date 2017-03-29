@@ -2,6 +2,12 @@
 layout: default
 ---
 <style type="text/css">
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
   body { font:Arial;}
   h1 {
     font-size: 20px; 
@@ -44,6 +50,7 @@ layout: default
 </style>
 <h1>Up to the hour Energy Social Platform stats</h1>
 <h2>Last updated: <span id="time"></span></h2>
+<h2>Estimated Secretary Followers on 4/14/2017: <span id="estimate"></span></h2>
 <!-- <svg width="960" height="500"></svg> -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -141,16 +148,61 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
     return a.date - b.date;
   });
 
+  //most recent reading/intercept
+  console.log(data[data.length-1].SECtwitter)
+
+  var known_y = [];
+  var known_x = [];
+  var known_y_last = [];
+  var known_x_last = [];
+  for (var i = 0; i < data.length; i++) {    
+    known_y.push(data[i].SECtwitter)
+    known_x.push(i)
+  }
+  for (var i = 0; i < (data.length-24); i++) {    
+    known_y_last.push(data[i].SECtwitter)
+    known_x_last.push(i)
+  }
+
+  //regression
+  var lr = linearRegression(known_y, known_x);
+  var lr_last = linearRegression(known_y_last, known_x_last);
+  console.log(lr)
+  console.log(lr_last)
+
+  // days till goal
+  var today = new Date();
+  var date_to_reply = new Date('2017-04-14');
+  var timeinmilisec = date_to_reply.getTime() - today.getTime();
+  var days_till_goal = Math.floor(timeinmilisec / (1000 * 60 * 60 * 24));
+
+  var y = (lr.slope*days_till_goal*24) + data[data.length-1].SECtwitter
+  var y_last = (lr_last.slope*days_till_goal*24) + data[data.length-1].SECtwitter
+
+  // expected by 4/14/2017
+  console.log(y)
+  console.log(y_last)
+  console.log(y_last-y)
+  var estimate = document.getElementById('estimate');
+  if (y - y_last < 0) {
+    var arrow = "<span class='red'>↓</span>"
+  } else {
+    var arrow = "<span class='green'>↑</span>"
+
+  }
+
+  estimate.innerHTML = Math.floor(y) + ", change of " + Math.floor((y-y_last)) + arrow + " since yesterday";
+
   // set the date updated
   var length = data.length - 1;
   var timeNow = data[length].date;
   element = document.getElementById('time');
-  element.innerHTML = timeNow
+  element.innerHTML = timeNow;
 
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.date; }));
 	y1.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
-	// y.domain([d3.min(data, function(d) { return d.DOEtwitter; }), d3.max(data, function(d) { return d.DOEtwitter; })]);
+	// y1.domain([d3.min(data, function(d) { return d.DOEtwitter; }), d3.max(data, function(d) { return d.DOEtwitter; })]);
   y2.domain(d3.extent(data, function(d) { return d.SECtwitter; }));
   y3.domain(d3.extent(data, function(d) { return d.DOEinstagram; }));
   y4.domain(d3.extent(data, function(d) { return d.DOEyoutube; }));
@@ -353,6 +405,34 @@ function mousemove() {
   }
 
 });
-		
+
+function linearRegression(y,x){
+  var lr = {};
+  var n = y.length;
+  var sum_x = 0;
+  var sum_y = 0;
+  var sum_xy = 0;
+  var sum_xx = 0;
+  var sum_yy = 0;
+
+  for (var i = 0; i < y.length; i++) {
+    sum_x += x[i];
+    sum_y += y[i];
+    sum_xy += (x[i]*y[i]);
+    sum_xx += (x[i]*x[i]);
+    sum_yy += (y[i]*y[i]);
+  }
+
+  lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
+  lr['intercept'] = (sum_y - lr.slope * sum_x)/n;
+  lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
+
+  return lr;
+}   
 
 </script>
+
+
+
+
+
