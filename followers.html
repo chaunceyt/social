@@ -8,6 +8,10 @@ layout: default
   .green {
     color: green;
   }
+  .analytics {
+    text-anchor: start;
+    fill: #000;
+  }
   body { font:Arial;}
   h1 {
     font-size: 20px; 
@@ -64,6 +68,8 @@ var	margin = {top: 30, right: 20, bottom: 30, left: 50},
 // Parse the date / time
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
+// var benchmarks = [15000,17500,20000,30000,50000,75000,100000,250000,500000,1000000]
+var benchmarks = [15000,17500,20000,30000,50000,75000,100000]
 
 // Set the ranges
 var x = d3.scaleTime()
@@ -148,51 +154,6 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
     return a.date - b.date;
   });
 
-  //most recent reading/intercept
-  console.log(data[data.length-1].SECtwitter)
-
-  var known_y = [];
-  var known_x = [];
-  var known_y_last = [];
-  var known_x_last = [];
-  for (var i = 0; i < data.length; i++) {    
-    known_y.push(data[i].SECtwitter)
-    known_x.push(i)
-  }
-  for (var i = 0; i < (data.length-24); i++) {    
-    known_y_last.push(data[i].SECtwitter)
-    known_x_last.push(i)
-  }
-
-  //regression
-  var lr = linearRegression(known_y, known_x);
-  var lr_last = linearRegression(known_y_last, known_x_last);
-  console.log(lr)
-  console.log(lr_last)
-
-  // days till goal
-  var today = new Date();
-  var date_to_reply = new Date('2017-04-14');
-  var timeinmilisec = date_to_reply.getTime() - today.getTime();
-  var days_till_goal = Math.floor(timeinmilisec / (1000 * 60 * 60 * 24));
-
-  var y = (lr.slope*days_till_goal*24) + data[data.length-1].SECtwitter
-  var y_last = (lr_last.slope*days_till_goal*24) + data[data.length-1].SECtwitter
-
-  // expected by 4/14/2017
-  console.log(y)
-  console.log(y_last)
-  console.log(y_last-y)
-  var estimate = document.getElementById('estimate');
-  if (y - y_last < 0) {
-    var arrow = "<span class='red'>↓</span>"
-  } else {
-    var arrow = "<span class='green'>↑</span>"
-
-  }
-
-  estimate.innerHTML = Math.floor(y) + ", change of " + Math.floor((y-y_last)) + arrow + " since yesterday";
-
   // set the date updated
   var length = data.length - 1;
   var timeNow = data[length].date;
@@ -271,6 +232,31 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
 	chart2.append("path")
 		.attr("class", "line")
 		.attr("d", valueline2(data));
+
+  var SECanalysis = analytics(data);
+
+  console.log(SECanalysis)
+
+  chart2.selectAll(".analytics")
+    .data(SECanalysis)
+    .enter()
+    .append("text")
+      .attr("class","analytics")
+      .attr("y",function(d,i){
+        return 15*i + 10
+      })
+      .attr("x",40)
+      .text(function(d,i){
+        return "Date to reach " + benchmarks[i] + ": " + d.getMonth() +"/"+ d.getDate() +"/"+ d.getFullYear();
+      });
+
+  // chart2.append("text")
+  //   .attr("class","analytics")  
+  //   .attr("y", 6)
+  //   .attr("x",40)
+  //   .text(function(d){
+  //     return "Secretary Perry Twitter Followers"
+  //   });
 
   var focus2 = chart2.append("g")
     .attr("class", "focus")
@@ -429,6 +415,64 @@ function linearRegression(y,x){
 
   return lr;
 }   
+
+function analytics(data){
+  // console.log(data)
+
+  //most recent reading/intercept
+
+  var known_y = [];
+  var known_x = [];
+  var known_y_last = [];
+  var known_x_last = [];
+  for (var i = 0; i < data.length; i++) {    
+    known_y.push(data[i].SECtwitter)
+    known_x.push(i)
+  }
+  for (var i = 0; i < (data.length-24); i++) {    
+    known_y_last.push(data[i].SECtwitter)
+    known_x_last.push(i)
+  }
+
+  //regression
+  var lr = linearRegression(known_y, known_x);
+  var lr_last = linearRegression(known_y_last, known_x_last);
+
+  // console.log(lr.slope)
+
+  // days till goal
+  var today = new Date();
+  var date_to_reply = new Date('2017-04-14');
+  var timeinmilisec = date_to_reply.getTime() - today.getTime();
+  var days_till_goal = Math.floor(timeinmilisec / (1000 * 60 * 60 * 24));
+
+  var y = (lr.slope*days_till_goal*24) + data[data.length-1].SECtwitter
+  var y_last = (lr_last.slope*days_till_goal*24) + data[data.length-1].SECtwitter
+
+  // expected by 4/14/2017
+  var estimate = document.getElementById('estimate');
+  if (y - y_last < 0) {
+    var arrow = "<span class='red'>↓</span>"
+  } else {
+    var arrow = "<span class='green'>↑</span>"
+
+  }
+
+  estimate.innerHTML = Math.floor(y) + ", change of " + Math.floor((y-y_last)) + arrow + " in last 24 hours";
+
+  var benchDates = [];
+  for (var i = 0; i < benchmarks.length; i++) {
+    // (y-b)/m=x
+    var y = data[data.length-1].SECtwitter;
+    var x = (benchmarks[i] - y)/lr.slope;
+    var benchDateTemp = Math.floor(x/24) *1000 * 60 * 60 * 24;
+    benchDates.push(new Date(today.getTime()+benchDateTemp))
+    // y=mx+b
+    
+
+  }
+  return benchDates;
+}
 
 </script>
 
