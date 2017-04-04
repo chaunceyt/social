@@ -247,7 +247,7 @@ d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", func
       })
       .attr("x",40)
       .text(function(d,i){
-        return "Date to reach " + benchmarks[i] + ": " + d.getMonth() +"/"+ d.getDate() +"/"+ d.getFullYear();
+        return "Date to reach " + benchmarks[i] + ": " + (d.getMonth()+1) +"/"+ d.getDate() +"/"+ d.getFullYear();
       });
 
   // chart2.append("text")
