@@ -164,16 +164,37 @@ function update(source,csv) {
             if (csv[i].facebook > 0)  {var fb = "\uf230 \u00A0"}
           }
         }
-//         if 
-//           \uf081 
-// \uf16d 
-// \uf167
-// \uf230
-
         var social = 'Σ\u00A0  ' + tw + insta + yt + fb;
         // '\uf0e1' + 
         return social})
       .style("fill-opacity", 1e-6);
+
+  nodeEnter.append("svg:text")
+      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+      .attr("dy", "3em")
+      .attr('style',"font-family: FontAwesome; font-size:12px;")
+      .attr("class","stats smaller")
+      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .text(function(d) { 
+        var tw = "";
+        var insta = "";
+        var fb = "";
+        var yt = "";
+        var summer = "";
+        for (var i = 0; i < csv.length; i++) {
+          csv[i]
+          if (csv[i].type === d.type) {            
+            if (csv[i].twitter > 0) {var tw = rounders(csv[i].twitter) + "\u00A0"}
+            if (csv[i].instagram > 0) {var insta = rounders(csv[i].instagram) + "\u00A0"}
+            if (csv[i].youtube > 0) {var yt = rounders(csv[i].youtube) + "\u00A0"}
+            if (csv[i].facebook > 0)  {var fb = rounders(csv[i].facebook) + "\u00A0"}
+            var summer = csv[i].twitter + csv[i].instagram + csv[i].youtube + csv[i].facebook;
+          }
+        }
+        var social = rounders(summer) + '\u00A0  ' + tw + insta + yt + fb;
+        // '\uf0e1' + 
+        return social})
+      .style("fill-opacity", 1e-6);      
 
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
@@ -244,6 +265,13 @@ function toggle(d) {
     d.children = d._children;
     d._children = null;
   }
+}
+
+function rounders(d) {
+  if (d < 1000) {
+    return d 
+  } else if (d < 1000000) 
+  return Math.floor(d/1000) + "K"
 }
 
     </script>
