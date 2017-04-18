@@ -5,14 +5,16 @@
 	"active":"yes",
 	"abbreviation": "DOE",
 	"accounts": [{
-		"Instagram": "",
-		"YouTube": "",
-		"Medium": "",
-		"Pinterest": "",
-		"Storify": "",
-		"LinkedIn": "",
-		"Google+": "",
-		"Vimeo": ""
+		"instagram": "energy",
+		"youtube": "USdepartmentofenergy",
+		"medium": "",
+		"pinterest": "energy",
+		"storify": "energy",
+		"linkedIn": "u-s--department-of-energy",
+		"twitter":"energy",
+		"facebook":"energygov",
+		"googleplus": "EnergyGov",
+		"vimeo": "energygov"
 	}],
 	"children": [{
 		"type": "Press Secretary",
@@ -21,14 +23,16 @@
 		"active":"yes",
 		"abbreviation": "",
 		"accounts": [{
-			"Instagram": "",
-			"YouTube": "",
-			"Medium": "",
-			"Pinterest": "",
-			"Storify": "",
-			"LinkedIn": "",
-			"Google+": "",
-			"Vimeo": ""
+			"instagram": "",
+			"youtube": "",
+			"medium": "",
+			"pinterest": "",
+			"storify": "",
+			"linkedIn": "",
+			"twitter":"EnergyPressSec",
+			"facebook":"",
+			"googleplus": "",
+			"vimeo": ""
 		}]
 	}, {
 		"type": "Secretary of Energy",
@@ -37,14 +41,16 @@
 		"active":"yes",
 		"abbreviation": "",
 		"accounts": [{
-			"Instagram": "",
-			"YouTube": "",
-			"Medium": "",
-			"Pinterest": "",
-			"Storify": "",
-			"LinkedIn": "",
-			"Google+": "",
-			"Vimeo": ""
+			"instagram": "",
+			"youtube": "",
+			"medium": "",
+			"pinterest": "",
+			"storify": "",
+			"linkedIn": "",
+			"twitter":"secretaryperry",
+			"facebook":"SecretaryPerry",
+			"googleplus": "",
+			"vimeo": ""
 		}],
 		"children": [{
 			"type": "Deputy Secretary of Energy",
@@ -53,30 +59,34 @@
 			"active":"no",
 			"abbreviation": "",
 			"accounts": [{
-				"Instagram": "",
-				"YouTube": "",
-				"Medium": "",
-				"Pinterest": "",
-				"Storify": "",
-				"LinkedIn": "",
-				"Google+": "",
-				"Vimeo": ""
+				"instagram": "",
+				"youtube": "",
+				"medium": "",
+				"pinterest": "",
+				"storify": "",
+				"linkedIn": "",
+				"twitter":"",
+				"facebook":"",
+				"googleplus": "",
+				"vimeo": ""
 			}]},
 			{
 			"type": "",
 			"zid": "",
 			"name": "null",
-			"active":"yes",
+			"active":"no",
 			"abbreviation": "",
 			"accounts": [{
-				"Instagram": "",
-				"YouTube": "",
-				"Medium": "",
-				"Pinterest": "",
-				"Storify": "",
-				"LinkedIn": "",
-				"Google+": "",
-				"Vimeo": ""
+				"instagram": "",
+				"youtube": "",
+				"medium": "",
+				"pinterest": "",
+				"storify": "",
+				"linkedIn": "",
+				"twitter":"",
+				"facebook":"",
+				"googleplus": "",
+				"vimeo": ""
 			}],
 			"children": [
 			{
@@ -86,14 +96,16 @@
 				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
+					"instagram": "",
+					"youtube": "",
+					"medium": "",
+					"pinterest": "",
+					"storify": "",
+					"linkedIn": "",
+					"twitter":"",
+					"facebook":"",
+					"googleplus": "",
+					"vimeo": ""
 				}],
 				"children": [{
 					"type": "Under Secretary for Nuclear Security Administration",
@@ -102,14 +114,16 @@
 					"active":"yes",
 					"abbreviation": "",
 					"accounts": [{
-						"Instagram": "",
-						"YouTube": "",
-						"Medium": "",
-						"Pinterest": "",
-						"Storify": "",
-						"LinkedIn": "",
-						"Google+": "",
-						"Vimeo": ""
+						"instagram": "",
+						"youtube": "",
+						"medium": "",
+						"pinterest": "",
+						"storify": "",
+						"linkedIn": "",
+						"twitter":"",
+						"facebook":"",
+						"googleplus": "",
+						"vimeo": ""
 					}]
 				}, {
 					"type": "NNSA",
@@ -118,14 +132,16 @@
 					"active":"yes",
 					"abbreviation": "",
 					"accounts": [{
-						"Instagram": "",
-						"YouTube": "",
-						"Medium": "",
-						"Pinterest": "",
-						"Storify": "",
-						"LinkedIn": "",
-						"Google+": "",
-						"Vimeo": ""
+						"instagram": "",
+						"youtube": "",
+						"medium": "",
+						"pinterest": "",
+						"storify": "",
+						"linkedIn": "",
+						"twitter":"nnsanews",
+						"facebook":"NNSANews",
+						"googleplus": "",
+						"vimeo": ""
 					}]
 				}, {
 					"type": "Other Nuclear Security",
@@ -134,14 +150,16 @@
 					"active":"no",
 					"abbreviation": "",
 					"accounts": [{
-						"Instagram": "",
-						"YouTube": "",
-						"Medium": "",
-						"Pinterest": "",
-						"Storify": "",
-						"LinkedIn": "",
-						"Google+": "",
-						"Vimeo": ""
+						"instagram": "",
+						"youtube": "",
+						"medium": "",
+						"pinterest": "",
+						"storify": "",
+						"linkedIn": "",
+						"twitter":"",
+						"facebook":"",
+						"googleplus": "",
+						"vimeo": ""
 					}]
 				}]
 			}, {
@@ -151,14 +169,16 @@
 				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
+					"instagram": "",
+					"youtube": "",
+					"medium": "",
+					"pinterest": "",
+					"storify": "",
+					"linkedIn": "",
+					"twitter":"",
+					"facebook":"",
+					"googleplus": "",
+					"vimeo": ""
 				}],
 				"children": [{
 						"type": "EERE",
@@ -167,14 +187,16 @@
 						"active":"yes",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"",
+							"facebook":"eeregov",
+							"googleplus": "",
+							"vimeo": ""
 						}],
 						"children": [{
 							"type": "Energy Saver",
@@ -183,14 +205,16 @@
 							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "",
+								"twitter":"EnergySaver",
+								"facebook":"energysavergov",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}, {
 							"type": "Science Bowl",
@@ -199,14 +223,16 @@
 							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "",
+								"twitter":"DOE_SC_NSB",
+								"facebook":"",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}, {
 							"type": "Better Buildings Challenge",
@@ -215,30 +241,34 @@
 							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "better-buildings",
+								"twitter":"betterbldgsdoe",
+								"facebook":"",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}, {
 							"type": "BioenergyKDF",
 							"zid": "15",
 							"name": "",
-							"active":"yes",
+							"active":"no",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "",
+								"twitter":"",
+								"facebook":"",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}, {
 							"type": "Solar Decathlon",
@@ -247,14 +277,16 @@
 							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "DOESolarDecathlon",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "",
+								"twitter":"solar_decathlon",
+								"facebook":"DOESolarDecathlon",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}]
 					}, {
@@ -264,14 +296,16 @@
 						"active":"yes",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "doescience",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"doescience",
+							"facebook":"",
+							"googleplus": "",
+							"vimeo": ""
 						}],
 						"children": [{
 							"type": "SBIR",
@@ -280,31 +314,35 @@
 							"active":"yes",
 							"abbreviation": "",
 							"accounts": [{
-								"Instagram": "",
-								"YouTube": "",
-								"Medium": "",
-								"Pinterest": "",
-								"Storify": "",
-								"LinkedIn": "",
-								"Google+": "",
-								"Vimeo": ""
+								"instagram": "",
+								"youtube": "",
+								"medium": "",
+								"pinterest": "",
+								"storify": "",
+								"linkedIn": "",
+								"twitter":"doesbir",
+								"facebook":"",
+								"googleplus": "",
+								"vimeo": ""
 							}]
 						}]
 					}, {
 						"type": "Fossil Energy",
 						"zid": "19",
 						"name": "",
-						"active":"no",
+						"active":"yes",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"fossilenergygov",
+							"facebook":"FossilEnergy",
+							"googleplus": "",
+							"vimeo": ""
 						}]
 					}, {
 						"type": "Nuclear Energy",
@@ -313,14 +351,16 @@
 						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"",
+							"facebook":"",
+							"googleplus": "",
+							"vimeo": ""
 						}]
 					}, {
 						"type": "Electricity",
@@ -329,14 +369,16 @@
 						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"",
+							"facebook":"",
+							"googleplus": "",
+							"vimeo": ""
 						}]
 					}, {
 						"type": "Indian Energy",
@@ -345,14 +387,16 @@
 						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"",
+							"facebook":"",
+							"googleplus": "",
+							"vimeo": ""
 						}]
 					}, {
 						"type": "Office of Technology Transitions",
@@ -361,14 +405,16 @@
 						"active":"no",
 						"abbreviation": "",
 						"accounts": [{
-							"Instagram": "",
-							"YouTube": "",
-							"Medium": "",
-							"Pinterest": "",
-							"Storify": "",
-							"LinkedIn": "",
-							"Google+": "",
-							"Vimeo": ""
+							"instagram": "",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"",
+							"facebook":"",
+							"googleplus": "",
+							"vimeo": ""
 						}]
 					}
 
@@ -380,14 +426,16 @@
 				"active":"yes",
 				"abbreviation": "",
 				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
+					"instagram": "",
+					"youtube": "",
+					"medium": "",
+					"pinterest": "",
+					"storify": "",
+					"linkedIn": "",
+					"twitter":"ARPAE",
+					"facebook":"arpaegov",
+					"googleplus": "",
+					"vimeo": ""
 				}]
 			}, {
 				"type": "Energy Information Administration",
@@ -396,14 +444,16 @@
 				"active":"yes",
 				"abbreviation": "EIA",
 				"accounts": [{
-					"Instagram": "",
-					"YouTube": "",
-					"Medium": "",
-					"Pinterest": "",
-					"Storify": "",
-					"LinkedIn": "",
-					"Google+": "",
-					"Vimeo": ""
+					"instagram": "",
+					"youtube": "EIAgov",
+					"medium": "",
+					"pinterest": "",
+					"storify": "",
+					"linkedIn": "u-s-energy-information-administration",
+					"twitter":"eiagov",
+					"facebook":"eiagov",
+					"googleplus": "",
+					"vimeo": ""
 				}]
 			}]
 		}]
