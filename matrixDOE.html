@@ -1,0 +1,376 @@
+---
+layout: default
+---
+<style type="text/css">
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+  .analytics, .values {
+    text-anchor: start;
+    fill: #000;
+  }
+  .values {
+    font-size: 15px;
+  }
+  .hours {
+    text-anchor: end;
+  }
+  body { font:Arial;}
+  h1 {
+    font-size: 20px; 
+  }
+  h2  {
+    font-size: 14px;
+  }
+  path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .date-track-line {
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+    stroke-dasharray: 5,5;
+    stroke: grey;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+
+
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .focus circle {
+    fill: none;
+    stroke: steelblue;
+  }
+
+</style>
+<h1>DOE Twitter Followers by the hour and days</h1>
+<h2>Since March 17th, 2017</h2>
+<h2>Go to: <a href="followers">hour by hour follower tracking</a> or <a href="">Social Media Org Chart</a><br>
+<!-- <a href="/matrixDOE">DOE twitter Follower matrix</a><br> -->
+<a href="matrixPerry">Secretary Perry Twitter Follower matrix</a><br>
+<a href="matrixInsta">DOE instagram matrix</a></h2> 
+<p>How to read this: This matrix adds up all followers added since the above date and puts them in the bucket according to what hour and day they were added. For instance, if you wanted to know how many followers we've added in the mornings on Thursdays, you would go across the top to "thurs" and go down to 9,10,11, etc. And you'd see that we do better on Thursday morning than Monday or Tuesday morning. The more green a cell is, the more followers added relatively. The opposite is true for redder cells. </p>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+// Set the dimensions of the canvas / graph
+var	margin = {top: 30, right: 80, bottom: 30, left: 50},
+	width = 900 - margin.left - margin.right,
+	height = 700 - margin.top - margin.bottom;
+
+// Parse the date / time
+var parseTime = d3.timeParse("%m/%d/%y %H:%M");
+var bisectDate = d3.bisector(function(d) { return d.date; }).left;
+
+var ø = 1;
+var boxheight = 25;
+var daysHours = [];
+for (var i = 0; i < 7; i++) {
+  daysHours[i] = []
+  for (var j = 0; j < 24; j++) {    
+    daysHours[i][j] = [0,0,0,0,i,j];
+  }
+};
+var dayNames = ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat","Total"]
+var hourNames = [];
+
+for (var i = 0; i < 24; i++) {
+  hourNames.push(i+1)
+}
+hourNames.push("Total")
+
+// Adds the svg canvas
+var	chart1 = d3.select("body")
+	.append("svg")  
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("class","chart")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+// Get the data
+d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", function(error, data) {
+	data.forEach(function(d) {
+		d.date = parseTime(d.date);
+		d.DOEtwitter = +d.DOEtwitter;
+		d.DOEinstagram = +d.DOEinstagram;
+		d.DOEyoutube = parseFloat(d.DOEyoutube.replace(',',''));
+		d.SECtwitter = +d.SECtwitter;
+	});
+
+var workedData = [];
+for (var i = 0; i < data.length; i++) {
+  workedData[i] = [];
+}
+
+data.forEach(function(d, a) {  
+  if (a > 111) {
+    workedData[a].push(d.date.getTime());
+    workedData[a].push(d.DOEinstagram - data[a-1].DOEinstagram);
+    workedData[a].push(d.DOEtwitter - data[a-1].DOEtwitter);
+    workedData[a].push(d.DOEyoutube - data[a-1].DOEyoutube);
+    workedData[a].push(d.SECtwitter - data[a-1].SECtwitter); 
+  }
+});
+
+// remove empty stuff
+workedData.splice(0,112)
+
+for (var i = 0; i < workedData.length; i++) {
+  // workedData[i][0] - 14400000 is the time minus 4 hours in miliseconds to take from GMT to EST
+  var dp = workedData[i][0] - 14400000;
+  var d = new Date(dp)
+  var day = d.getDay();
+  var hour = d.getHours();  
+  daysHours[day][hour][0] += workedData[i][1];
+  daysHours[day][hour][1] += workedData[i][2];
+  daysHours[day][hour][2] += workedData[i][3];
+  daysHours[day][hour][3] += workedData[i][4];
+}
+
+var dayTotal = [];
+var hourTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+for (var i = 0; i < daysHours.length; i++) {
+  var temp1 = 0;  
+  for (var j = 0; j < daysHours[i].length; j++) {
+    temp1 += daysHours[i][j][ø];
+    hourTotal[j] += Math.floor(daysHours[i][j][ø]);
+  }
+  dayTotal.push(Math.floor(temp1));  
+}
+
+var ourScale = d3.scale.linear()
+  .range([0,1])
+  .domain([d3.min(daysHours,function(d){      
+      var submin = d3.min(d,function(d){   
+        return d[ø]
+      })
+      return submin;
+    }),d3.max(daysHours,function(d){
+      var submax = d3.max(d,function(d){        
+        return d[ø]
+      })
+      return submax;      
+    })
+  ]);
+
+var ourScale2 = d3.scale.linear()
+  .range([0,1])
+  .domain(d3.extent(hourTotal));  
+
+var ourScale3 = d3.scale.linear()
+  .range([0,1])
+  .domain(d3.extent(dayTotal));  
+
+// y1.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
+
+function colorScale(x) {
+  if (x <= 0.5) {
+    var q = Math.floor((x*2)*(255-90)+90);
+    var color = "rgb(255," + q + ",90)";
+  } else if (x>0.5) {
+    var q = Math.floor(255-((x-0.5)*2)*(255-90));
+    var color = "rgb(" + q + ",255,90)";
+  }
+  return color;
+}
+
+var days = chart1.selectAll("g")
+  .data(daysHours)
+  .enter()
+  .append("g")
+  .attr("class","dayColumn")
+
+days.selectAll("rect")
+  .data(function(d) { return d; })
+  .enter().append("rect")
+    .attr("class","value")
+    .attr("width",(((width-margin.left-margin.right))/7) )
+    .attr("height",boxheight)
+    .attr("fill",function(d){
+      return colorScale(ourScale(d[ø]))
+    })    
+    .attr("x", function(d){      
+      return (margin.left + (((width-margin.left-margin.right)*d[4])/7) );
+    })       
+    .attr("y",function(d){
+      return d[5]*boxheight;
+    })
+
+var av1Box = chart1.append("g")
+  .attr("class","avBoxDay")
+
+av1Box.selectAll("rect")
+  .data(dayTotal)
+  .enter().append("rect")
+    .attr("class","value")
+    .attr("width",(((width-margin.left-margin.right))/7) )
+    .attr("height",boxheight)
+    .attr("fill",function(d){
+      return colorScale(ourScale3(d))
+    })    
+    .attr("x", function(d,i){            
+      return (margin.left + (((width-margin.left-margin.right)*i)/7) );
+    })       
+    .attr("y",function(d){
+      return height - boxheight - 15;
+    });
+
+var av2Box = chart1.append("g")
+  .attr("class","avBoxHour")
+
+av2Box.selectAll("rect")
+  .data(hourTotal)
+  .enter().append("rect")
+    .attr("class","value")
+    .attr("width",(((width-margin.left-margin.right))/7) )
+    .attr("height",boxheight)
+    .attr("fill",function(d){
+      return colorScale(ourScale2(d))
+    })    
+    .attr("x", function(d){      
+      return (margin.left + (((width-margin.left-margin.right)*7)/7) );
+    })       
+    .attr("y",function(d,i){
+      return i*boxheight;
+    });
+
+chart1.append("rect")
+  .attr("x", function(d){      
+    return (margin.left + (((width-margin.left-margin.right)*7)/7) );
+  })   
+  .attr("y",function(d,i){
+    return -boxheight;
+  })
+  .attr("width",5)
+  .attr("height",boxheight*26)
+  .attr("fill","#000")
+
+chart1.append("rect")
+  .attr("x", function(d,i){            
+    return 0;
+  })       
+  .attr("y",function(d){
+    return height - boxheight - 15;
+  })
+  .attr("width",width + 11)
+  .attr("height",5)
+  .attr("fill","#000")
+
+
+var dayLabels = chart1.append("g")
+  .attr("class","dayLabel")
+
+dayLabels.selectAll("text") 
+  .data(dayNames)
+  .enter().append("text")
+    .attr("class","values")
+    .text(function(d){
+      return d;
+    })
+    .attr("x", function(d,i){      
+      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 35 );
+    })       
+    .attr("y",function(d){
+      return 0;
+    })
+    .attr("dy","-10px");
+
+var hourLabels = chart1.append("g")
+  .attr("class","hourLabel")
+
+hourLabels.selectAll("text")
+  .data(hourNames)
+  .enter().append("text")
+    .attr("class","hours values")
+    .text(function(d){
+      return d;
+    })
+    .attr("x", function(d){      
+      return 40;
+    })       
+    .attr("y",function(d,i){
+      return (1+i)*boxheight;
+    })
+    .attr("dy","-5px"); 
+
+
+var dayTotals = chart1.append("g")
+  .attr("class","dayTotals")
+
+dayTotals.selectAll("text") 
+  .data(dayTotal)
+  .enter().append("text")
+    .attr("class","values")
+    .text(function(d){
+      return d;
+    })
+    .attr("x", function(d,i){      
+      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 30 );
+    })       
+    .attr("y",function(d){
+      return height -10;
+    })
+    .attr("dy","-10px");
+
+var hourTotals = chart1.append("g")
+  .attr("class","hourTotals")
+
+hourTotals.selectAll("text")
+  .data(hourTotal)
+  .enter().append("text")
+    .attr("class","hours values")
+    .text(function(d){
+      return d;
+    })
+    .attr("x", function(d){      
+      return width - 20;
+    })       
+    .attr("y",function(d,i){
+      return (1+i)*boxheight;
+    })
+    .attr("dy","-10px"); 
+
+days.selectAll("text") 
+  .data(function(d) { return d; })
+  .enter().append("text")
+    .attr("class","values")
+    .text(function(d){
+      return d[ø];
+    })
+    .attr("x", function(d){      
+      return (margin.left + (((width-margin.left-margin.right)*d[4])/7)+ 40 );
+    })       
+    .attr("y",function(d){
+      return d[5]*boxheight;
+    })
+    .attr("dy","18px")
+
+  // set the date updated
+  // var length = data.length - 1;
+  // var timeNow = data[length].date;
+  // element = document.getElementById('time');
+  // element.innerHTML = timeNow;
+
+
+});
+
+
+</script>
