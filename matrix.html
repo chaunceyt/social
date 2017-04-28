@@ -61,6 +61,7 @@ layout: default
 <h1>Sec Perry Twitter Followers by the hour and days</h1>
 <h2>Since March 17th, 2017</h2>
 <h2>Go to: <a href="/followers">hour by hour follower tracking</a> or <a href="/">Social Media Org Chart</a></h2> 
+<p>How to read this: This matrix adds up all followers added since the above date and puts them in the bucket according to what hour and day they were added. For instance, if you wanted to know how many followers we've added in the mornings on Thursdays, you would go across the top to "thurs" and go down to 9,10,11, etc. And you'd see that we do better on Thursday morning than Monday or Tuesday morning. The more green a cell is, the more followers added relatively. The opposite is true for redder cells. </p>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
@@ -83,13 +84,13 @@ for (var i = 0; i < 7; i++) {
     daysHours[i][j] = [0,0,0,0,i,j];
   }
 };
-var dayNames = ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat","Average"]
+var dayNames = ["Sun","Mon","Tues","Wed","Thurs","Fri","Sat","Total"]
 var hourNames = [];
 
 for (var i = 0; i < 24; i++) {
   hourNames.push(i+1)
 }
-hourNames.push("average")
+hourNames.push("Total")
 
 // Adds the svg canvas
 var	chart1 = d3.select("body")
@@ -141,25 +142,21 @@ for (var i = 0; i < workedData.length; i++) {
   daysHours[day][hour][3] += workedData[i][4];
 }
 
-var dayAverage = [];
-var hourAverage = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var dayTotal = [];
+var hourTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 for (var i = 0; i < daysHours.length; i++) {
   var temp1 = 0;  
   for (var j = 0; j < daysHours[i].length; j++) {
     temp1 += daysHours[i][j][ø];
-    hourAverage[j] += Math.floor(daysHours[i][j][ø]/7);
+    hourTotal[j] += Math.floor(daysHours[i][j][ø]);
   }
-  dayAverage.push(Math.floor(temp1/24));  
+  dayTotal.push(Math.floor(temp1));  
 }
 
 var ourScale = d3.scale.linear()
   .range([0,1])
   .domain([d3.min(daysHours,function(d){      
       var submin = d3.min(d,function(d){   
-        // if (d[ø] < 0) {
-        //   return 0
-        // }     
-        // else return d[ø]
         return d[ø]
       })
       return submin;
@@ -170,6 +167,16 @@ var ourScale = d3.scale.linear()
       return submax;      
     })
   ]);
+
+var ourScale2 = d3.scale.linear()
+  .range([0,1])
+  .domain(d3.extent(hourTotal));  
+
+var ourScale3 = d3.scale.linear()
+  .range([0,1])
+  .domain(d3.extent(dayTotal));  
+
+// y1.domain(d3.extent(data, function(d) { return d.DOEtwitter; }));
 
 function colorScale(x) {
   if (x <= 0.5) {
@@ -208,16 +215,15 @@ var av1Box = chart1.append("g")
   .attr("class","avBoxDay")
 
 av1Box.selectAll("rect")
-  .data(dayAverage)
+  .data(dayTotal)
   .enter().append("rect")
     .attr("class","value")
     .attr("width",(((width-margin.left-margin.right))/7) )
     .attr("height",boxheight)
     .attr("fill",function(d){
-      return colorScale(ourScale(d))
+      return colorScale(ourScale3(d))
     })    
-    .attr("x", function(d,i){      
-      console.log(d)
+    .attr("x", function(d,i){            
       return (margin.left + (((width-margin.left-margin.right)*i)/7) );
     })       
     .attr("y",function(d){
@@ -228,20 +234,43 @@ var av2Box = chart1.append("g")
   .attr("class","avBoxHour")
 
 av2Box.selectAll("rect")
-  .data(hourAverage)
+  .data(hourTotal)
   .enter().append("rect")
     .attr("class","value")
     .attr("width",(((width-margin.left-margin.right))/7) )
     .attr("height",boxheight)
     .attr("fill",function(d){
-      return colorScale(ourScale(d))
+      return colorScale(ourScale2(d))
     })    
     .attr("x", function(d){      
       return (margin.left + (((width-margin.left-margin.right)*7)/7) );
     })       
     .attr("y",function(d,i){
       return i*boxheight;
-    })
+    });
+
+chart1.append("rect")
+  .attr("x", function(d){      
+    return (margin.left + (((width-margin.left-margin.right)*7)/7) );
+  })   
+  .attr("y",function(d,i){
+    return -boxheight;
+  })
+  .attr("width",5)
+  .attr("height",boxheight*26)
+  .attr("fill","#000")
+
+chart1.append("rect")
+  .attr("x", function(d,i){            
+    return 0;
+  })       
+  .attr("y",function(d){
+    return height - boxheight - 15;
+  })
+  .attr("width",width + 11)
+  .attr("height",5)
+  .attr("fill","#000")
+
 
 var dayLabels = chart1.append("g")
   .attr("class","dayLabel")
@@ -254,7 +283,7 @@ dayLabels.selectAll("text")
       return d;
     })
     .attr("x", function(d,i){      
-      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 40 );
+      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 35 );
     })       
     .attr("y",function(d){
       return 0;
@@ -277,39 +306,39 @@ hourLabels.selectAll("text")
     .attr("y",function(d,i){
       return (1+i)*boxheight;
     })
-    .attr("dy","-10px"); 
+    .attr("dy","-5px"); 
 
 
-var dayAverages = chart1.append("g")
-  .attr("class","dayAverages")
+var dayTotals = chart1.append("g")
+  .attr("class","dayTotals")
 
-dayAverages.selectAll("text") 
-  .data(dayAverage)
+dayTotals.selectAll("text") 
+  .data(dayTotal)
   .enter().append("text")
     .attr("class","values")
     .text(function(d){
       return d;
     })
     .attr("x", function(d,i){      
-      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 40 );
+      return (margin.left + (((width-margin.left-margin.right)*i)/7)+ 30 );
     })       
     .attr("y",function(d){
-      return height - 10;
+      return height -10;
     })
     .attr("dy","-10px");
 
-var hourAverages = chart1.append("g")
-  .attr("class","hourAverages")
+var hourTotals = chart1.append("g")
+  .attr("class","hourTotals")
 
-hourAverages.selectAll("text")
-  .data(hourAverage)
+hourTotals.selectAll("text")
+  .data(hourTotal)
   .enter().append("text")
     .attr("class","hours values")
     .text(function(d){
       return d;
     })
     .attr("x", function(d){      
-      return width - 10;
+      return width - 20;
     })       
     .attr("y",function(d,i){
       return (1+i)*boxheight;
@@ -332,124 +361,13 @@ days.selectAll("text")
     .attr("dy","18px")
 
   // set the date updated
-  var length = data.length - 1;
-  var timeNow = data[length].date;
-  element = document.getElementById('time');
-  element.innerHTML = timeNow;
+  // var length = data.length - 1;
+  // var timeNow = data[length].date;
+  // element = document.getElementById('time');
+  // element.innerHTML = timeNow;
 
-// evaluate the date
-// put the data into buckets
-// 
-
-
-
-
-function mousemove() {
-    var x0 = x.invert(d3.mouse(this)[0]),
-        i = bisectDate(data, x0, 1),
-        d0 = data[i - 1],
-        d1 = data[i],
-        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-
-    focus1.attr("transform", "translate(" + x(d.date) + "," + y1(d.DOEtwitter) + ")");
-    focus1.select("text").text(d.DOEtwitter);
-    focus2.attr("transform", "translate(" + x(d.date) + "," + y2(d.SECtwitter) + ")");
-    focus2.select("text").text(d.SECtwitter);
-    focus3.attr("transform", "translate(" + x(d.date) + "," + y3(d.DOEinstagram) + ")");
-    focus3.select("text").text(d.DOEinstagram);
-    focus4.attr("transform", "translate(" + x(d.date) + "," + y4(d.DOEyoutube) + ")");
-    focus4.select("text").text(d.DOEyoutube);
-
-    var ys = [y1(d.DOEtwitter), y2(d.SECtwitter), y3(d.DOEinstagram), y4(d.DOEyoutube)]
-
-    d3.selectAll(".date-track-line")
-      .attr("x1",x(d.date))
-      .attr("x2",x(d.date))
-      .attr("y1",function(d,i){  
-        return ys[i];
-      })  
-      .attr("y2",height)
-  }
 
 });
 
-function linearRegression(y,x){
-  var lr = {};
-  var n = y.length;
-  var sum_x = 0;
-  var sum_y = 0;
-  var sum_xy = 0;
-  var sum_xx = 0;
-  var sum_yy = 0;
-
-  for (var i = 0; i < y.length; i++) {
-    sum_x += x[i];
-    sum_y += y[i];
-    sum_xy += (x[i]*y[i]);
-    sum_xx += (x[i]*x[i]);
-    sum_yy += (y[i]*y[i]);
-  }
-
-  lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
-  lr['intercept'] = (sum_y - lr.slope * sum_x)/n;
-  lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
-
-  return lr;
-}   
-
-function analytics(data){
-  //most recent reading/intercept
-
-  var known_y = [];
-  var known_x = [];
-  var known_y_last = [];
-  var known_x_last = [];
-  for (var i = 0; i < data.length; i++) {    
-    known_y.push(data[i].SECtwitter)
-    known_x.push(i)
-  }
-  for (var i = 0; i < (data.length-24); i++) {    
-    known_y_last.push(data[i].SECtwitter)
-    known_x_last.push(i)
-  }
-
-  //regression
-  var lr = linearRegression(known_y, known_x);
-  var lr_last = linearRegression(known_y_last, known_x_last);
-
-
-  // days till goal
-  var today = new Date();
-  var date_to_reply = new Date('2017-05-01');
-  var timeinmilisec = date_to_reply.getTime() - today.getTime();
-  var days_till_goal = Math.floor(timeinmilisec / (1000 * 60 * 60 * 24));
-
-  var y = (lr.slope*days_till_goal*24) + data[data.length-1].SECtwitter
-  var y_last = (lr_last.slope*days_till_goal*24) + data[data.length-1].SECtwitter
-
-  // expected by 4/14/2017
-  var estimate = document.getElementById('estimate');
-  if (y - y_last < 0) {
-    var arrow = "<span class='red'>↓</span>"
-  } else {
-    var arrow = "<span class='green'>↑</span>"
-
-  }
-
-  estimate.innerHTML = Math.floor(y) + ", change of " + Math.floor((y-y_last)) + arrow + " in last 24 hours";
-
-  var benchDates = [];
-  for (var i = 0; i < benchmarks.length; i++) {
-    // (y-b)/m=x
-    var y = data[data.length-1].SECtwitter;
-    var x = (benchmarks[i] - y)/lr.slope;
-    var benchDateTemp = Math.floor(x/24) *1000 * 60 * 60 * 24;
-    benchDates.push(new Date(today.getTime()+benchDateTemp))
-    // y=mx+b
-    
-
-  }
-  return benchDates;
-}
 
 </script>
