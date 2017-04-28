@@ -38,7 +38,9 @@ path.link {
 
 
 <div id="body">
-      
+      <h1>DOE Social Media Org Chart</h1>
+      <h2>Updated: April 28, 2017</h2>
+      <h2>Go to: <a href="/followers">hour by hour follower tracking</a> or <a href="matrix">Follower matrixes</a></h2> 
 </div>
 <svg width="960" height="500">
 </svg>
@@ -46,7 +48,7 @@ path.link {
 
     <script type="text/javascript">
 
-var m = [20, 120, 20, 120],
+var m = [20, 120, 20, 150],
     w = 1280 - m[1] - m[3],
     h = 800 - m[0] - m[2],
     i = 0,
@@ -119,7 +121,7 @@ function update(source,csv) {
         }
       })
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-      .on("click", function(d) { toggle(d); update(d); });
+      // .on("click", function(d) { toggle(d); update(d); });
 
   nodeEnter.append("svg:circle")
       .attr("r", 1e-6)
@@ -135,9 +137,10 @@ function update(source,csv) {
 
   var textList = nodeEnter.append("g")
     .attr("class","textList")    
-
+  
   textList.each(function(d,i){            
     var j = 0;
+    // console.log(d)
     for (var k in d.accounts[0]) {
       if (d.accounts[0][k] != "") {
         if (k === "twitter" || k === "instagram" || k === "facebook" || k === "youtube") {
@@ -193,6 +196,7 @@ function update(source,csv) {
       }
     }
   })
+
 
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
@@ -256,7 +260,7 @@ function update(source,csv) {
 
 // Toggle children.
 function toggle(d) {
-  if (d.children) {
+  if (d.children) {    
     d._children = d.children;
     d.children = null;
   } else {
@@ -265,7 +269,7 @@ function toggle(d) {
   }
 }
 
-function rounders(d) {
+function rounders(d) {  
   if (d < 1000) {
     return d 
   } else if (d < 1000000) 

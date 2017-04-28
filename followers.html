@@ -55,6 +55,7 @@ layout: default
 <h1>Up to the hour Energy Social Platform stats</h1>
 <h2>Last updated: <span id="time"></span></h2>
 <h2>Estimated Secretary Followers on 4/30/2017: <span id="estimate"></span></h2>
+<h2>Go to: <a href="/">Social Media Org Chart</a> or <a href="matrix">Follower matrixes</a></h2> 
 <!-- <svg width="960" height="500"></svg> -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -69,7 +70,7 @@ var	margin = {top: 30, right: 20, bottom: 30, left: 50},
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 var bisectDate = d3.bisector(function(d) { return d.date; }).left;
 // var benchmarks = [15000,17500,20000,30000,50000,75000,100000,250000,500000,1000000]
-var benchmarks = [17500,20000,30000,50000,75000,100000]
+var benchmarks = [20000,25000,30000,35000,50000,75000,100000]
 
 // Set the ranges
 var x = d3.scaleTime()
