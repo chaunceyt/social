@@ -1,0 +1,380 @@
+{
+	"type": "Ames Laboratory",
+	"zid": "26",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"Ames_Laboratory",
+		"facebook":"AmesLaboratory",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Argonne National Laboratory",
+	"zid": "27",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "argonne",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"argonne",
+		"facebook":"argonne",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Brookhaven National Laboratory",
+	"zid": "28",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "brookhavenlab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"BrookhavenLab",
+		"facebook":"brookhavenlab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Fermi National Accelerator Laboratory",
+	"zid": "29",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "fermilab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"Fermilab",
+		"facebook":"Fermilab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Idaho National Laboratory",
+	"zid": "30",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "idaho_national_lab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"INL",
+		"facebook":"IdahoNationalLaboratory",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Jefferson Lab",
+	"zid": "31",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"JLab_News",
+		"facebook":"JeffersonLab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Lawrence Berkeley National Laboratory",
+	"zid": "32",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "berkeleylab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"BerkeleyLab",
+		"facebook":"BerkeleyLab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Lawrence Livermore National Laboratory",
+	"zid": "33",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "livermore_lab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"Livermore_Lab",
+		"facebook":"livermore.lab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Los Alamos National Laboratory",
+	"zid": "34",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "losalamosnatlab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"LosAlamosNatLab",
+		"facebook":"LosAlamosNationalLab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "National Energy Technology Laboratory",
+	"zid": "35",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "netl_doe",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"NETL_DOE",
+		"facebook":"NationalEnergyTechnologyLaboratory",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "National Renewable Energy Laboratory",
+	"zid": "36",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "nationalrenewableenergylab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"NREL",
+		"facebook":"nationalrenewableenergylab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Oak Ridge National Laboratory",
+	"zid": "37",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "oakridgelab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"ORNL",
+		"facebook":"Oak.Ridge.National.Laboratory",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Pacific Northwest National Laboratory",
+	"zid": "38",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "pnnlab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"PNNLab",
+		"facebook":"PNNLgov",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Princeton Plasma Physics Laboratory",
+	"zid": "39",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "ppplab",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"PPPLab",
+		"facebook":"PPPLab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Sandia National Laboratory",
+	"zid": "40",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "_sandialabs",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"SandiaLabs",
+		"facebook":"SandiaLabs",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "Savannah River National Laboratory",
+	"zid": "41",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"",
+		"facebook":"",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "SLAC National Accelerator Laboratory",
+	"zid": "42",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"SLAClab",
+		"facebook":"SLAC.National.Lab",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "ORNL Building Tech",
+	"zid": "43",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"ORNLbuildings",
+		"facebook":"",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "ORNL Manufacturing",
+	"zid": "44",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"ORNLMDF",
+		"facebook":"",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
+{
+	"type": "LBNL Media Report",
+	"zid": "45",
+	"name": "",
+	"active":"yes",
+	"abbreviation": "",
+	"accounts": [{
+		"instagram": "",
+		"youtube": "",
+		"medium": "",
+		"pinterest": "",
+		"storify": "",
+		"linkedIn": "",
+		"twitter":"LBNLmediareport",
+		"facebook":"",
+		"googleplus": "",
+		"vimeo": ""
+	}]
+},
