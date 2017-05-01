@@ -6,7 +6,7 @@ layout: default
 
 .node circle {
   cursor: pointer;
-  fill: #fff;
+  fill: transparent;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
@@ -39,13 +39,13 @@ path.link {
 
 <div id="body">
       <h1>DOE Social Media Org Chart</h1>
-      <h2>Updated: April 28, 2017</h2>
+      <h1>Size of bubble indicates total number of followers</h1>
+      <h2>Updated: May 1, 2017</h2>
       <h2>Go to: <a href="followers">hour by hour follower tracking</a><br>
       <a href="matrixDOE">DOE twitter Follower matrixes</a><br>
       <a href="matrixPerry">Secretary Perry Twitter Follower matrixes</a><br>
       <a href="matrixInsta">DOE instagram matrixes</a></h2> 
 </div>
-<svg width="960" height="500">
 </svg>
 <!-- have d3 v3 (in default) for rebind and v4 too for csv??????? -->
 
@@ -53,7 +53,7 @@ path.link {
 
 var m = [20, 120, 20, 150],
     w = 1280 - m[1] - m[3],
-    h = 800 - m[0] - m[2],
+    h = 1400 - m[0] - m[2],
     i = 0,
     root;
 
@@ -62,6 +62,10 @@ var tree = d3.layout.tree()
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
+
+var ourScale = d3.scale.linear()
+  .range([2,30])
+  .domain([1000, 100000])
 
 var vis = d3.select("#body").append("svg:svg")
     .attr("width", w + m[1] + m[3])
@@ -128,7 +132,7 @@ function update(source,csv) {
 
   nodeEnter.append("svg:circle")
       .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "transparent"; });
 
   nodeEnter.append("svg:text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -207,8 +211,18 @@ function update(source,csv) {
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
   nodeUpdate.select("circle")
-      .attr("r", 4.5)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      .attr("r", function(d){
+        var total = 4.5;
+        for (var i = 0; i < csv.length; i++) {
+          if (csv[i].type === d.type) {                        
+            var socialTotal = csv[i].facebook + csv[i].twitter + csv[i].instagram + csv[i].youtube;
+            console.log(socialTotal)            
+            console.log(ourScale(socialTotal))
+          }
+        }
+        return ourScale(socialTotal);
+      })
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "transparent"; });
 
   nodeUpdate.selectAll("text")
       .style("fill-opacity", 1);

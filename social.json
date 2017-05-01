@@ -90,7 +90,7 @@
 			}],
 			"children": [
 			{
-				"type": "Office of the Under Secretary for Nuclear Security and National Nuclear Security Organization",
+				"type": "Office of the Under Secretary for Nuclear Security and NNSA",
 				"zid": "6",
 				"name": "",
 				"active":"yes",
@@ -111,7 +111,7 @@
 					"type": "Under Secretary for Nuclear Security Administration",
 					"zid": "7",
 					"name": "Frank Klotz",
-					"active":"yes",
+					"active":"no",
 					"abbreviation": "",
 					"accounts": [{
 						"instagram": "",
@@ -142,7 +142,65 @@
 						"facebook":"NNSANews",
 						"googleplus": "",
 						"vimeo": ""
-					}]
+					}],
+					"children": [{
+						"type": "Lawrence Livermore National Laboratory",
+						"zid": "33",
+						"name": "",
+						"active":"yes",
+						"abbreviation": "",
+						"accounts": [{
+							"instagram": "livermore_lab",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"Livermore_Lab",
+							"facebook":"livermore.lab",
+							"googleplus": "",
+							"vimeo": ""
+						}]
+					},
+					{
+						"type": "Los Alamos National Laboratory",
+						"zid": "34",
+						"name": "",
+						"active":"yes",
+						"abbreviation": "",
+						"accounts": [{
+							"instagram": "losalamosnatlab",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"LosAlamosNatLab",
+							"facebook":"LosAlamosNationalLab",
+							"googleplus": "",
+							"vimeo": ""
+						}]
+					},
+					{
+						"type": "Sandia National Laboratory",
+						"zid": "40",
+						"name": "",
+						"active":"yes",
+						"abbreviation": "",
+						"accounts": [{
+							"instagram": "_sandialabs",
+							"youtube": "",
+							"medium": "",
+							"pinterest": "",
+							"storify": "",
+							"linkedIn": "",
+							"twitter":"SandiaLabs",
+							"facebook":"SandiaLabs",
+							"googleplus": "",
+							"vimeo": ""
+						}]
+					}
+					]
 				}, {
 					"type": "Other Nuclear Security",
 					"zid": "9",
