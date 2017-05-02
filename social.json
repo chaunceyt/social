@@ -311,24 +311,6 @@
 								"vimeo": ""
 							}]
 						}, {
-							"type": "BioenergyKDF",
-							"zid": "15",
-							"name": "",
-							"active":"no",
-							"abbreviation": "",
-							"accounts": [{
-								"instagram": "",
-								"youtube": "",
-								"medium": "",
-								"pinterest": "",
-								"storify": "",
-								"linkedIn": "",
-								"twitter":"",
-								"facebook":"",
-								"googleplus": "",
-								"vimeo": ""
-							}]
-						}, {
 							"type": "Solar Decathlon",
 							"zid": "16",
 							"name": "",
