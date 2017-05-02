@@ -155,7 +155,7 @@ function update(source,csv) {
           var item1 = d3.select(this)
           .append("a")
           .attr("class","stats")
-          .attr("href",function(d){            
+          .attr("xlink:href",function(d){            
             if (k === "twitter") {var socialURL = "https://twitter.com/" + d.accounts[0][k]}
             if (k === "instagram") {var socialURL = "https://instagram.com/" + d.accounts[0][k]}
             if (k === "youtube") {var socialURL = "https://www.youtube.com/user/" + d.accounts[0][k]}
