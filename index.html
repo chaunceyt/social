@@ -73,7 +73,7 @@ var vis = d3.select("#body").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/all_social_data.csv", function(csv) {
+d3.csv("https://energy.gov/api/social/all_social_data.csv", function(csv) {
   csv.forEach(function(d) {
     d.facebook = +d.facebook;
     d.instagram = +d.instagram;
