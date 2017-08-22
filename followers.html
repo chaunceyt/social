@@ -145,7 +145,7 @@ var	chart4 = d3.select("body")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("https://energy.gov/api/social/social_data.csv", function(error, data) {
+d3.csv("https://s3-us-west-2.amazonaws.com/energy2/social/social_data.csv", function(error, data) {
 	data.forEach(function(d) {
 		d.date = parseTime(d.date);
 		d.DOEtwitter = +d.DOEtwitter;
