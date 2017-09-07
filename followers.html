@@ -147,13 +147,19 @@ var	chart4 = d3.select("body")
 // Get the data
 d3.csv("https://energy.gov/api/social/social_data.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = parseTime(d.date);
+		d.date = convert_date(d);
 		d.DOEtwitter = +d.DOEtwitter;
 		d.DOEinstagram = +d.DOEinstagram;
 		d.DOEyoutube = parseFloat(d.DOEyoutube.replace(',',''));
 		d.SECtwitter = +d.SECtwitter;
 	});
 
+  function convert_date(d) {
+    return {
+      date: new Date(d.date),
+      value: +d.value         // convert string to number
+    };
+  } 
   data.sort(function(a, b) {
     return a.date - b.date;
   });
